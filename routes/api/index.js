@@ -3,6 +3,9 @@ const authRoutes = require("./users");
 const mazesRoutes = require("./mazes");
 const boxesRoutes = require("./boxes");
 
+// Utilisation des routes pour les différentes fonctionnalités
+// Routes liées respectivement à l'authentification des utilisateurs ,opérations sur le labyrinthe
+//et les opérations reliées aux cases du labyrinthe
 router.use("/auth", authRoutes);
 router.use("/mazes", mazesRoutes);
 router.use("/boxes", boxesRoutes);

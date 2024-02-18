@@ -15,6 +15,10 @@ exports.resolver = function (maze, start, end) {
   return minBoxes;
 };
 
+// Fonction récursive pour trouver la longueur minimale du chemin entre les boîtes 'start' et 'end' dans le labyrinthe.
+// Utilise la recherche DFS (Depth-First Search) en évitant les boîtes déjà visitées et les boîtes non autorisées.
+// Retourne la longueur minimale du chemin ou Infinity si aucun chemin n'est possible.
+
 function findPath(currentBox, endBox, visitedBox, maze, directions) {
   if (currentBox === endBox) {
     return 1;

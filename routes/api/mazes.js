@@ -3,8 +3,10 @@ const router = express.Router();
 const authenticateToken = require("../auth");
 const MazeModel = require("../../models/Maze");
 
+// Middleware d'authentification requis pour toutes les routes de ce routeur
 router.use(authenticateToken.required);
 
+// Endpoint pour la création d'un nouveau labyrinthe
 router.post("/", async (req, res) => {
   const nameMaze = req.body;
   try {
@@ -26,6 +28,8 @@ router.post("/", async (req, res) => {
     return res.status(500).json(error);
   }
 });
+
+// Endpoint pour récupérer tous les labyrinthes
 router.get("/", async (req, res) => {
   try {
     const mazes = await MazeModel.find();
@@ -35,6 +39,8 @@ router.get("/", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+// Endpoint pour récupérer un labyrinthe spécifique par son ID
 router.get("/:mazeId", async (req, res) => {
   const mazeId = req.params.mazeId;
   try {
@@ -47,6 +53,8 @@ router.get("/:mazeId", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+// Endpoint pour mettre à jour un labyrinthe spécifique par son ID
 router.put("/:mazeId", async (req, res) => {
   const mazeId = req.params.mazeId;
   try {
@@ -63,6 +71,8 @@ router.put("/:mazeId", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+// Endpoint pour supprimer un labyrinthe spécifique par son ID
 router.delete("/:mazeId", async (req, res) => {
   const mazeId = req.params.mazeId;
   try {

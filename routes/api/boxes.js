@@ -2,8 +2,10 @@ const router = require("express").Router();
 const authenticateToken = require("../auth");
 const BoxesModel = require("../../models/Box");
 
+// Middleware d'authentification requis pour toutes les routes de ce routeur
 router.use(authenticateToken.required);
 
+// Endpoint pour la création d'une nouvelle case dans le labyrinthe
 router.post("/", async (req, res) => {
   const { x, y, isAllowed, maze } = req.body;
   try {
@@ -26,6 +28,8 @@ router.post("/", async (req, res) => {
       .json({ error: "Erreur lors de la création de la case" });
   }
 });
+
+// Endpoint pour récupérer toutes les boîtes
 router.get("/", async (req, res) => {
   try {
     const boxes = await BoxesModel.find();
@@ -34,6 +38,8 @@ router.get("/", async (req, res) => {
     return res.status(500).json(error);
   }
 });
+
+// Endpoint pour récupérer une boîte spécifique par son ID
 router.get("/:boxId", async (req, res) => {
   const boxId = req.params.boxId;
   try {
@@ -46,6 +52,8 @@ router.get("/:boxId", async (req, res) => {
     return res.status(500).json(error);
   }
 });
+
+// Endpoint pour mettre à jour une boîte spécifique par son ID
 router.put("/:boxId", async (req, res) => {
   const boxId = req.params.boxId;
   try {
@@ -61,6 +69,8 @@ router.put("/:boxId", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+// Endpoint pour supprimer une boîte spécifique par son ID
 router.delete("/:boxId", async (req, res) => {
   const boxId = req.params.boxId;
   try {
